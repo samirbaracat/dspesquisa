@@ -2,7 +2,7 @@ import './styles.css';
 
 type Props = {
     totalPages?: number;
-    goToPage: Function;
+    goToPage: (a: number) => void;
     activePage: number;
 }
 

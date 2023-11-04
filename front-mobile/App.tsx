@@ -2,8 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts, Inter_400Regular, Inter_700Bold } from '@expo-google-fonts/inter';
-import { Header } from './src/components/Header';
-import { Home } from './src/pages/Home';
+import { Routes } from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -16,8 +15,7 @@ export default function App() {
   } else {
       return (
         <View style={styles.container}>
-          <Header />
-          <Home />
+          <Routes />
           <StatusBar style="auto" />
         </View>
       );
@@ -26,7 +24,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#0B1F34'
+    flex: 1
   },
 });

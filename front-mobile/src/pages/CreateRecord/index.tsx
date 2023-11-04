@@ -41,17 +41,21 @@ export function CreateRecord() {
     }
 
     const handleSubmit = () => {
-        const payload = {name, age, gameId: selectedGame};
+        const payload = { name: name, age: Number(age), gameId: selectedGame };
 
         axios.post(`${BASE_URL}/records`, payload)
             .then(() => {
+                console.log(payload);
                 Alert.alert('Dados salvos com sucesso');
                 setName('');
                 setAge('');
                 setSelectedGame('');
                 setPlatform(undefined);
             })
-            .catch(() => Alert.alert('Erro ao salvar as informacoes!'))
+            .catch(() => {
+                Alert.alert('Erro ao salvar as informacoes!');
+                console.log(payload);
+            })
     }
 
     useEffect(() => {

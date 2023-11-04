@@ -30,12 +30,13 @@ public class SecurityConfig {
 
 
         http
-                .csrf((csrf) -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
-
+                //.csrf((csrf) -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+                .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers(mvcMatcherBuilder.pattern("/records/**")).permitAll() //MVC Controller
-                                .requestMatchers(mvcMatcherBuilder.pattern("/games/**")).permitAll() //MVC Controller
+                                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/records/**")).permitAll() //MVC Controller
+                                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/records/**")).permitAll() //MVC Controller
+                                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET,"/games/**")).permitAll() //MVC Controller
                                 .requestMatchers(AntPathRequestMatcher.antMatcher(PathRequest.toH2Console() + "/**")).permitAll()
                                 .anyRequest().permitAll()
                 )
